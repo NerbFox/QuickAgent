@@ -1,7 +1,7 @@
 import asyncio
 from dotenv import load_dotenv
 
-from deepgram import (
+from deepgram import ( # type: ignore
     DeepgramClient,
     DeepgramClientOptions,
     LiveTranscriptionEvents,

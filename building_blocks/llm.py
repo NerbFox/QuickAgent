@@ -1,5 +1,5 @@
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate # type: ignore
+from langchain_groq import ChatGroq # type: ignore
 from dotenv import load_dotenv
 import os
 
