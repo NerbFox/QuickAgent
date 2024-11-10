@@ -1,24 +1,24 @@
 import asyncio
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # type: ignore
 import shutil
 import subprocess
-import requests
+import requests  # type: ignore
 import time
 import os
 
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
-from langchain_openai import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
-from langchain.prompts import (
+from langchain_core.prompts import ChatPromptTemplate  # type: ignore
+from langchain_groq import ChatGroq  # type: ignore
+from langchain_openai import ChatOpenAI  # type: ignore
+from langchain.memory import ConversationBufferMemory  # type: ignore
+from langchain.prompts import (  # type: ignore
     ChatPromptTemplate,
     MessagesPlaceholder,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-from langchain.chains import LLMChain
+from langchain.chains import LLMChain  # type: ignore
 
-from deepgram import (
+from deepgram import (  # type: ignore
     DeepgramClient,
     DeepgramClientOptions,
     LiveTranscriptionEvents,
@@ -31,8 +31,8 @@ load_dotenv()
 class LanguageModelProcessor:
     def __init__(self):
         self.llm = ChatGroq(temperature=0, model_name="mixtral-8x7b-32768", groq_api_key=os.getenv("GROQ_API_KEY"))
-        # self.llm = ChatOpenAI(temperature=0, model_name="gpt-4-0125-preview", openai_api_key=os.getenv("OPENAI_API_KEY"))
-        # self.llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-0125", openai_api_key=os.getenv("OPENAI_API_KEY"))
+        # ads self.llm = ChatOpenAI(temperature=0, model_name="gpt-4-0125-preview", openai_api_key=os.getenv("OPENAI_API_KEY"))
+        # ads self.llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-0125", openai_api_key=os.getenv("OPENAI_API_KEY"))
 
         self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 

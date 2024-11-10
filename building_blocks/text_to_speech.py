@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import subprocess
 import shutil
 import time
-from deepgram import Deepgram
+from deepgram import Deepgram # type: ignore
 
 # brew install portaudio
 
@@ -19,7 +19,8 @@ def is_installed(lib_name: str) -> bool:
     lib = shutil.which(lib_name)
     return lib is not None
 
-def play_stream(audio_stream, use_ffmpeg=True):
+def play_stream(audio_stream):
+    # df use_ffmpeg=True
     player = "ffplay"
     if not is_installed(player):
         raise ValueError(f"{player} not found, necessary to stream audio.")
@@ -54,7 +55,7 @@ def send_tts_request(text):
         "voice": MODEL_NAME
     }
     
-    start_time = time.time()  # Record the time before sending the request
+    # asd start_time = time.time()  # Record the time before sending the request
     first_byte_time = None  # Initialize a variable to store the time when the first byte is received
     
     # Initialize the player process here, before receiving the stream
@@ -74,7 +75,7 @@ def send_tts_request(text):
     first_byte_time = None  # Initialize a variable to store the time when the first byte is received
     
     with requests.post(DEEPGRAM_URL, stream=True, headers=headers, json=payload) as r:
-        # dg_performance_total_ms = r.headers.get('x-dg-performance-total-ms', 'Not Available')
+        # asd dg_performance_total_ms = r.headers.get('x-dg-performance-total-ms', 'Not Available')
         # print(f"Deepgram Performance Total (ms): {dg_performance_total_ms}ms")
 
         for chunk in r.iter_content(chunk_size=1024):
